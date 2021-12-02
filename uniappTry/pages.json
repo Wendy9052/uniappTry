@@ -5,13 +5,63 @@
 			"style": {
 				"navigationBarTitleText": "index"
 			}
+		},
+		{
+			"path": "pages/index/me",
+			"style": {
+				"navigationBarTitleText": "me"
+			}
+		},
+		{
+			"path": "pages/index/wendy",
+			"style": {
+				"navigationBarTitleText": "wendy"
+			}
+		},
+		{
+			"path": "pages/index/fine",
+			"style": {
+				"navigationBarTitleText": "fine"
+			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",	
 		"navigationBarTitleText": "uni-app",	
 		"navigationBarBackgroundColor": "#F8F8F8",	
-		"backgroundColor": "#F8F8F8"
-		
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "default"	//default(显示导航栏) custom(不显示导航栏)
+	},
+	"tabBar": {
+		"color": "#000",
+		"selectedColor": "#F0AD4E",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "#F0AD4E",
+		"list":[
+			{
+				"pagePath":"pages/index/index",
+				// "iconPath": "static/image/icon_component.png",
+				// "selectedIconPath": "static/image/icon_component_HL.png",
+				"text": "index"
+			},
+			{
+				"pagePath":"pages/index/me",
+				// "iconPath": "static/image/icon_component.png",
+				// "selectedIconPath": "static/image/icon_component_HL.png",
+				"text": "me"
+			},
+			{
+				"pagePath":"pages/index/wendy",
+				// "iconPath": "static/image/icon_component.png",
+				// "selectedIconPath": "static/image/icon_component_HL.png",
+				"text": "wendy"
+			},
+			{
+				"pagePath":"pages/index/fine",
+				// "iconPath": "static/image/icon_component.png",
+				// "selectedIconPath": "static/image/icon_component_HL.png",
+				"text": "fine"
+			}
+		]
 	}
 }
