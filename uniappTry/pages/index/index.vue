@@ -18,6 +18,7 @@
 			  </swiper-item>
 			</swiper>
 		</view>
+		<uni-badge text="1"></uni-badge>
 		<!-- 轮播图 -->
 		<view class="swiper_box">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" circular>
@@ -32,7 +33,7 @@
 				</swiper-item>
 			</swiper>
 		</view>
-		<!--  -->
+		<!-- 五个图标选项 -->
 		
 		<picker mode="date" :value="date" start="2015-09-01" end="2020-09-01" @change="bindDateChange">
 			<view class="date_box">
@@ -61,6 +62,8 @@
 </template>
 
 <script>
+	// import {uniBadge} from '@dcloudio/uni-ui'
+	// import uniBadge from '@dcloudio/uni-ui/lib/uni-badge/uni-badge.vue' //也可使用此方式引入组件
 	import WucTab from '@/components/wuc-tab/wuc-tab.vue';
 	export default {
 		components: { WucTab },

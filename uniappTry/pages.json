@@ -15,7 +15,7 @@
 		{
 			"path": "pages/index/find",
 			"style": {
-				"navigationBarTitleText": "发现"
+				"navigationBarTitleText": "发现" 
 			}
 		},
 		{
