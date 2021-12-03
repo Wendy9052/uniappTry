@@ -1,5 +1,39 @@
 <template>
 	<view class="index_page">
+		<view class="top_part">
+			<van-icon size="40px" name="invitation" />
+			<view class="searchBox">
+				<van-icon name="search" />
+				<input type="text" value="" class="search_ipt" />
+			</view>
+			<van-icon name="clock-o" />
+		</view>
+		<view class="tab_part">
+			<wuc-tab :tab-list="tabList" textFlex :tabCur.sync="TabCur" tab-class="tab_class" select-class="select_class" @change="tabChange"></wuc-tab>
+			<swiper :current="TabCur" duration="300" @change="swiperChange">
+			  <swiper-item v-for="(item,index) in tabList" :key="index">
+				  <view class="">
+					
+				  </view>
+			  </swiper-item>
+			</swiper>
+		</view>
+		<!-- 轮播图 -->
+		<view class="swiper_box">
+			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" circular>
+				<swiper-item>
+					<view class="swiper_item" style="background: #333333;">Addd</view>
+				</swiper-item>
+				<swiper-item>
+					<view class="swiper_item" style="background: #808080;">B</view>
+				</swiper-item>
+				<swiper-item>
+					<view class="swiper_item" style="background: #C8C7CC;">C</view>
+				</swiper-item>
+			</swiper>
+		</view>
+		<!--  -->
+		
 		<picker mode="date" :value="date" start="2015-09-01" end="2020-09-01" @change="bindDateChange">
 			<view class="date_box">
 				<view class="date_label">日期</view>
@@ -12,20 +46,7 @@
 			<view id="demo3" class="box">C</view>
 		</scroll-view>
 		<button type="default" @click="goTop">回到顶部</button>
-		<!-- 轮播图 -->
-		<view class="swiper_box">
-			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" circular>
-				<swiper-item>
-					<view class="swiper_item" style="background: #333333;">A</view>
-				</swiper-item>
-				<swiper-item>
-					<view class="swiper_item" style="background: #808080;">B</view>
-				</swiper-item>
-				<swiper-item>
-					<view class="swiper_item" style="background: #C8C7CC;">C</view>
-				</swiper-item>
-			</swiper>
-		</view>
+		
 		<view class="date_box">
 			<text>幻灯片切换时长(ms)</text>
 			<text class="info">{{duration}}</text>
@@ -40,9 +61,23 @@
 </template>
 
 <script>
+	import WucTab from '@/components/wuc-tab/wuc-tab.vue';
 	export default {
+		components: { WucTab },
 		data() {
 			return {
+				TabCur: 0,
+				tabList: [
+					{ name: '文字' }, 
+					{ name: '文字' },
+					{ name: '三个字' },
+					{ name: '四个字的' },
+					{ name: '文字' },
+				],
+				active: 1,
+				value: "", //搜索框中的值
+				
+				
 				date:"",
 				"buttonText":"按钮",
 				"buttondisble":false,
@@ -61,6 +96,19 @@
 
 		},
 		methods: {
+			swiperChange(e) {
+				let { current } = e.target;
+				this.TabCur2 = current;
+			},
+			tabChange(index) {
+				this.TabCur = index;
+			},
+			// onChange(event) {
+			// 	wx.showToast({
+			// 		title: `切换到标签 ${event.detail.name}`,
+			// 		icon: 'none',
+			// 	});
+			// },
 			// 轮播图
 			intervalChange(e) {
 				this.interval = e.target.value
@@ -79,9 +127,9 @@
 			},
 			goTop(e) {
 				this.scrollTop = this.old.scrollTop
-				this.$nextTick(() => {
-					this.scrollTop = 0
-				});
+				// this.$nextTick(() => {
+				// 	this.scrollTop = 0
+				// });
 				uni.showToast({
 					icon:"none",
 					title:"纵向滚动 scrollTop 值已被修改为 0"
@@ -94,17 +142,47 @@
 <style lang="scss" scoped>
 .index_page{
 	padding: 15px;
+	.tab_part{
+		.tab_class{
+			// background: #C0C0C0;
+			font-size: 14px;
+			border-bottom: none;
+		}
+		.select_class{
+			border-bottom: 1px solid #000000;
+		}
+	}
+	.top_part{
+		display: flex;
+		justify-content: space-between;
+		.searchBox{
+			display: flex;
+			box-shadow: 0 0 5px rgba(0,0,0,0.2);
+			height: 30px;
+			border-radius: 15px;
+			text-indent: 5px;
+			align-items: center;
+			.search_ipt{
+				width: 70vw;
+			}
+		}
+	}
 	.swiper_box{
 		margin-top: 15px;
 		margin-bottom: 15px;
+		height: 170px;
+		border-radius: 20px;
+		overflow: hidden;
 		.swiper{
-			height: 60px;
+			height: 100%;
+			border-radius: 20px;
 			.swiper_item{
 				height: 100%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				background: #ccc;
+				color: #fff;
 			}
 		}
 	}

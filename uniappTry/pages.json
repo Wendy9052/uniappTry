@@ -3,25 +3,25 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "index"
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
-			"path": "pages/index/me",
+			"path": "pages/index/myListen",
 			"style": {
-				"navigationBarTitleText": "me"
+				"navigationBarTitleText": "我听"
 			}
 		},
 		{
-			"path": "pages/index/wendy",
+			"path": "pages/index/find",
 			"style": {
-				"navigationBarTitleText": "wendy"
+				"navigationBarTitleText": "发现"
 			}
 		},
 		{
-			"path": "pages/index/fine",
+			"path": "pages/index/my",
 			"style": {
-				"navigationBarTitleText": "fine"
+				"navigationBarTitleText": "我的"
 			}
 		}
 	],
@@ -30,37 +30,47 @@
 		"navigationBarTitleText": "uni-app",	
 		"navigationBarBackgroundColor": "#F8F8F8",	
 		"backgroundColor": "#F8F8F8",
-		"navigationStyle": "default"	//default(显示导航栏) custom(不显示导航栏)
+		"navigationStyle": "default",	//default(显示导航栏) custom(不显示导航栏)
+		"usingComponents": {
+		    "van-row": "/wxcomponents/vant/dist/row/index",
+		    "van-col": "/wxcomponents/vant/dist/col/index",
+		    "van-icon": "/wxcomponents/vant/dist/icon/index",
+		    "van-button": "/wxcomponents/vant/dist/button/index",
+			"van-search": "/wxcomponents/vant/dist/search/index",
+			// "van-icon": "/wxcomponents/vant/dist/icon/index",
+			"van-tab": "/wxcomponents/vant/dist/tab/index",
+			"van-tabs": "/wxcomponents/vant/dist/tabs/index"
+		}
 	},
 	"tabBar": {
 		"color": "#000",
 		"selectedColor": "#F0AD4E",
 		"backgroundColor": "#FFFFFF",
-		"borderStyle": "#F0AD4E",
+		// "borderStyle": "#F0AD4E",
 		"list":[
 			{
 				"pagePath":"pages/index/index",
 				// "iconPath": "static/image/icon_component.png",
 				// "selectedIconPath": "static/image/icon_component_HL.png",
-				"text": "index"
+				"text": "首页"
 			},
 			{
-				"pagePath":"pages/index/me",
+				"pagePath":"pages/index/myListen",
 				// "iconPath": "static/image/icon_component.png",
 				// "selectedIconPath": "static/image/icon_component_HL.png",
-				"text": "me"
+				"text": "我听"
 			},
 			{
-				"pagePath":"pages/index/wendy",
+				"pagePath":"pages/index/find",
 				// "iconPath": "static/image/icon_component.png",
 				// "selectedIconPath": "static/image/icon_component_HL.png",
-				"text": "wendy"
+				"text": "发现"
 			},
 			{
-				"pagePath":"pages/index/fine",
+				"pagePath":"pages/index/my",
 				// "iconPath": "static/image/icon_component.png",
 				// "selectedIconPath": "static/image/icon_component_HL.png",
-				"text": "fine"
+				"text": "我的"
 			}
 		]
 	}
