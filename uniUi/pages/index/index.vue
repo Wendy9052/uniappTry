@@ -1,12 +1,35 @@
 <template>
 	<view class="index_page">
 		<view class="top_part">
+			<uni-icons color="#999999" type="calendar-filled" size="25"></uni-icons>
 			<view class="searchBox">
-				<van-icon name="search" />
-				<input type="text" value="" class="search_ipt" />
+				<uni-search-bar @confirm="search" @input="input" bgColor="#F8F8F8" class="search_ipt" maxlength="100">
+					<uni-icons slot="searchIcon" color="#999999" size="18" type="search" />
+				</uni-search-bar>
 			</view>
+			<uni-icons color="#999999" type="calendar-filled" size="25"></uni-icons>
 		</view>
-		<uni-badge text="1"></uni-badge>
+		<view class="">
+			<wuc-tab :tab-list="tabList" :tabCur.sync="TabCur" @change="tabChange"></wuc-tab>
+			<swiper :current="TabCur" duration="300" @change="swiperChange">
+			  <swiper-item v-for="(item,index) in tabList" :key="index">
+			    <view>{{item.name}}</view>
+			  </swiper-item>
+			</swiper>
+		</view>
+		<!-- <uni-badge text="1"></uni-badge> -->
+		<!-- uni-ui的轮播图 -->
+		<!-- <view class="swiper_outer">
+			<uni-swiper-dot :info="info" :current="current" field="content" :mode="mode">
+				<swiper class="swiper-box" @change="change">
+					<swiper-item v-for="(item ,index) in info" :key="index">
+						<view class="swiper-item">
+							{{item.content}}
+						</view>
+					</swiper-item>
+				</swiper>
+			</uni-swiper-dot>
+		</view> -->
 		<!-- 轮播图 -->
 		<view class="swiper_box">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" circular>
@@ -22,41 +45,48 @@
 			</swiper>
 		</view>
 		<!-- 五个图标选项 -->
-		
-		<picker mode="date" :value="date" start="2015-09-01" end="2020-09-01" @change="bindDateChange">
-			<view class="date_box">
-				<view class="date_label">日期</view>
-				<view class="date_text">{{date}}</view>
+		<view class="icon_box_outer">
+			<view class="icon_box">
+				<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
+				<text class="icon_text">文字</text>
 			</view>
-		</picker>
-		<scroll-view :scroll-top="scrollTop" class="scroll_box" scroll-y="true" @scroll="scroll" scroll-left="120">
-			<view id="demo1" class="box">A</view>
-			<view id="demo2" class="box">B</view>
-			<view id="demo3" class="box">C</view>
-		</scroll-view>
-		<button type="default" @click="goTop">回到顶部</button>
-		
-		<view class="date_box">
-			<text>幻灯片切换时长(ms)</text>
-			<text class="info">{{duration}}</text>
+			<view class="icon_box">
+				<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
+				<text class="icon_text">文字</text>
+			</view>
+			<view class="icon_box">
+				<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
+				<text class="icon_text">文字</text>
+			</view>
+			<view class="icon_box">
+				<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
+				<text class="icon_text">文字</text>
+			</view>
+			<view class="icon_box">
+				<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
+				<text class="icon_text">文字</text>
+			</view>
 		</view>
-		<slider @change="durationChange" :value="duration" min="500" max="2000" />
-		<view class="date_box">
-			<text>自动播放间隔时长(ms)</text>
-			<text class="info">{{interval}}</text>
-		</view>
-		<slider @change="intervalChange" :value="interval" min="2000" max="10000" />
 	</view>
 </template>
 
 <script>
 	// import {uniBadge} from '@dcloudio/uni-ui'
 	// import uniBadge from '@dcloudio/uni-ui/lib/uni-badge/uni-badge.vue' //也可使用此方式引入组件
-	// import WucTab from '@/components/wuc-tab/wuc-tab.vue';
+	import WucTab from '@/components/wuc-tab/wuc-tab.vue';
 	export default {
-		// components: { WucTab },
+		components: { WucTab },
 		data() {
 			return {
+				info: [{
+					content: '内容 A'
+				}, {
+					content: '内容 B'
+				}, {
+					content: '内容 C'
+				}],
+				current: 0,
+				mode: 'dot',
 				TabCur: 0,
 				tabList: [
 					{ name: '文字' }, 
@@ -87,6 +117,9 @@
 
 		},
 		methods: {
+			change(e) {
+				this.current = e.detail.current;
+			},
 			swiperChange(e) {
 				let { current } = e.target;
 				this.TabCur2 = current;
@@ -106,11 +139,6 @@
 			},
 			durationChange(e) {
 				this.duration = e.target.value
-			},
-			// 区域滚动
-			bindDateChange(e) {
-				this.date = e.detail.value
-				console.log((e))
 			},
 			scroll(e) {
 				console.log(e)
@@ -133,6 +161,27 @@
 <style lang="scss" scoped>
 .index_page{
 	padding: 15px;
+	.icon_box_outer{
+		display: flex;
+		justify-content: space-evenly;
+		.icon_box{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			.icon_text{
+				font-size: 12px;
+				margin-top: 5px;
+			}
+		}
+		.icon_btn{
+			// height: 50px;
+			// background: #C0C0C0;
+			// display: flex;
+			// flex-direction: column;
+			// justify-content: center;
+			// align-items: center;
+		}
+	}
 	.tab_part{
 		.tab_class{
 			// background: #C0C0C0;
@@ -146,17 +195,31 @@
 	.top_part{
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		.searchBox{
 			display: flex;
 			box-shadow: 0 0 5px rgba(0,0,0,0.2);
-			height: 30px;
+			height: 25px;
 			border-radius: 15px;
 			text-indent: 5px;
 			align-items: center;
+			overflow: hidden;
 			.search_ipt{
 				width: 70vw;
 			}
 		}
+	}
+	.swiper_outer{
+		height: 170px;
+		border-radius: 15px;
+		// overflow: hidden;
+		.swiper-box{
+			.swiper-item{
+				background: #C0C0C0;
+				height: 100%;
+			}
+		}
+		
 	}
 	.swiper_box{
 		margin-top: 15px;
