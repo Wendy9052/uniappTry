@@ -99,8 +99,14 @@
 					</view>
 					<!-- 精品周更 -->
 					<view class="boutique_box">
-						<view class="boutique_item">
-							
+						<view v-for="(item,index) in 2" class="boutique_item">
+							<view class="boutique_cover_box">
+								<view class="boutique_cover"  style="background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf);">
+									<view class="">
+										
+									</view>
+								</view>
+							</view>
 						</view>
 					</view>
 				</view>
@@ -268,12 +274,31 @@
 					display:flex;
 					flex-wrap: wrap;
 					height: auto;
+					
 					.boutique_item{
 						width: calc(calc(100% / 2) - 10px);
 						margin:5px;
-						height:50px;
+						// height:50px;
 						box-sizing: border-box;
-						border:1px  solid #DCDCDC;
+						// border:1px  solid #DCDCDC;
+						.boutique_cover_box{
+							width: 100%;
+							height: 0;
+							padding-top: 100%;
+							position: relative;
+							.boutique_cover{
+								position: absolute;
+								top: 0;
+								left: 0;
+								width: 100%;
+								height: 100%;
+								background-color: green;
+								border-radius: 5px;
+								background-repeat: no-repeat;
+								background-position: center;
+								background-size: cover;
+							}
+						}
 					}
 				}
 				.change_btn{
