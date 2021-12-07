@@ -68,8 +68,39 @@
 					<view class="like_box">
 						<view v-for="(item,index) in 6" class="like_box_item">
 							<view class="cover_box">
-								
+								<view class="img_box" style="background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf);">
+									<view class="icon_box">
+										<view class="icon_item"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> 15.5万</view>
+										<view class="icon_item"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> 1...</view>
+									</view>
+								</view>
 							</view>
+							<view class="detail_text">
+								一些描述一些描述一些描述一些描述一些描述一些描述一些描述
+							</view>
+						</view>
+					</view>
+					<!-- 换一批 -->
+					<view class="change_btn">
+						<view class="btn_text">
+							换一批
+						</view>
+						<view class="btn_icon">
+							<uni-icons custom-prefix="iconfont" type="refreshempty" size="18"></uni-icons>
+						</view>
+					</view>
+					<!-- banner -->
+					<view class="banner_box">
+						
+					</view>
+					<view class="title_box">
+						<view class="title_text">精品周更</view>
+						<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
+					</view>
+					<!-- 精品周更 -->
+					<view class="boutique_box">
+						<view class="boutique_item">
+							
 						</view>
 					</view>
 				</view>
@@ -232,7 +263,33 @@
 			height: 100%;
 			.tab_swiper_item{
 				width: 200vw;
-				background: #ccc;
+				.boutique_box{
+					width: 100%;
+					display:flex;
+					flex-wrap: wrap;
+					height: auto;
+					.boutique_item{
+						width: calc(calc(100% / 2) - 10px);
+						margin:5px;
+						height:50px;
+						box-sizing: border-box;
+						border:1px  solid #DCDCDC;
+					}
+				}
+				.change_btn{
+					border: 1px solid #A5A4A4;
+					height: 26px;
+					border-radius: 13px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 100px;
+					margin: 20px auto;
+					padding: 0 10px;
+					.btn_text{
+						font-size: 12px;
+					}
+				}
 				.like_box{
 					// background: pink;
 					width: 100%;
@@ -244,21 +301,69 @@
 						margin:5px;
 						// height:50px;
 						box-sizing: border-box;
-						border:1px  solid #000;
-						.cover_box{
-							content:"";
-							display: inline-block;
-							padding-bottom: 100%;
+						border:1px  solid #DCDCDC;
+						.detail_text{
+							font-size: 12px;
+							line-height: 18px;
+							color: #303133;
+							width: 100%;
+							overflow: hidden;
+							text-overflow: ellipsis; /* 文本溢出时显示省略号来代表被修剪的文本 */
+							display: -webkit-box; /* 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 */
+							-webkit-box-orient: vertical; /* 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 */
+							-webkit-line-clamp: 2; /* 文本需要显示多少行 */
+
 						}
+						.cover_box{
+							width: 100%;
+							height: 0;
+							padding-top: 100%;
+							position: relative;
+							.img_box{
+								position: absolute;
+								top: 0;
+								left: 0;
+								width: 100%;
+								height: 100%;
+								background-repeat: no-repeat;
+								background-position: center;
+								background-size: cover;
+								display: flex;
+								align-items: flex-end;
+								.icon_box{
+									width: 100%;
+									display: flex;
+									justify-content: space-between;
+									color: #fff;
+									font-size: 10px;
+									.icon_item{
+										display: flex;
+									}
+								}
+							}
+						}
+					}
+				}
+				.title_box{
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					margin-top: 15px;
+					margin-bottom: 15px;
+					.more_box{
+						display: flex;
+						align-items: center;
+						font-size: 12px;
+						color: #909399;
 					}
 				}
 				.title_text{
 					font-size: 14px;
 					color: #333333;
-					// font-weight: bold;
+					text-indent: 5px;
 				}
 				.scroll_box_outer{
-					background: pink;
+					// background: pink;
 					height: 100px;
 					padding: 15px 0; 
 					width: 100%;
