@@ -3,9 +3,13 @@
 		<view class="top_part">
 			<uni-icons color="#999999" type="calendar-filled" size="25"></uni-icons>
 			<view class="searchBox">
-				<uni-search-bar @confirm="search" @input="input" bgColor="#F8F8F8" class="search_ipt" maxlength="100">
-					<uni-icons slot="searchIcon" color="#999999" size="18" type="search" />
+				<!-- 替换组件的搜索图标 -->
+				<uni-search-bar placeholder="" @confirm="search" @cancel="cancel" class="search_ipt" cancel-text="cancel">
+				    <uni-icons slot="searchIcon" class="search_icon" color="#999999" size="18" type="search" />
 				</uni-search-bar>
+
+				<!-- 基本用法 -->
+				<!-- <uni-search-bar @confirm="search" @input="input" class="search_ipt"></uni-search-bar> -->
 			</view>
 			<uni-icons color="#999999" type="calendar-filled" size="25"></uni-icons>
 		</view>
@@ -18,13 +22,13 @@
 					<view class="swiper_box">
 						<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" circular>
 							<swiper-item>
-								<view class="swiper_item" style="background: #333333;">Addd</view>
+								<view class="swiper_item" :style="{backgroundImage: 'url(' + img_url_2 + ')'}"></view>
 							</swiper-item>
 							<swiper-item>
-								<view class="swiper_item" style="background: #808080;">B</view>
+								<view class="swiper_item" :style="{backgroundImage: 'url(' + img_url_3 + ')'}"></view>
 							</swiper-item>
 							<swiper-item>
-								<view class="swiper_item" style="background: #C8C7CC;">C</view>
+								<view class="swiper_item" :style="{backgroundImage: 'url(' + img_url_2 + ')'}"></view>
 							</swiper-item>
 						</swiper>
 					</view>
@@ -52,7 +56,7 @@
 						</view>
 					</view>
 					<!-- 运势语音 -->
-					<view class="banner_box">
+					<view class="banner_box" :style="{backgroundImage: 'url(' + img_url_2 + ')'}">
 						
 					</view>
 					<!-- 左右滑动 -->
@@ -90,7 +94,7 @@
 						</view>
 					</view>
 					<!-- banner -->
-					<view class="banner_box">
+					<view class="banner_box" :style="{backgroundImage: 'url(' + img_url_2 + ')'}">
 						
 					</view>
 					<view class="title_box">
@@ -267,6 +271,8 @@
 		components: { WucTab },
 		data() {
 			return {
+				img_url_3:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1111%2F052GQ22314%2F1P52G22314-8-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641544188&t=7982849db358713895028bdc49745d70",
+				img_url_2:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-05-29%2F5ed0c8e507044.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641544023&t=2882d37d568b0a3a7076c0e011e6c583",
 				recommendList: [
 					{
 						title:"耳机里的男朋友",
@@ -814,14 +820,18 @@
 							margin-right: 8px;
 							flex-grow:0;
 							flex-shrink:0;
+							background-repeat: no-repeat;
+							background-position: center;
+							background-size: cover;
 						}
 					}
 				}
 				.banner_box{
-					// background: pink;
-					background: #76868c;
 					height: 100px;
 					border-radius: 10px;
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-position: center;
 				}
 				.icon_box_outer{
 					display: flex;
@@ -871,14 +881,15 @@
 				height: 100%;
 			}
 			.swiper_item{
-				background: green;
 				border-radius: 10px;
 				height: 100%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				background: #ccc;
 				color: #fff;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
 				.item_content{
 					width: 100%;
 					height: 100%;
@@ -900,6 +911,11 @@
 			overflow: hidden;
 			.search_ipt{
 				width: 70vw;
+				position: relative;
+				.search_icon{
+					position: absolute;
+					left: 0;
+				}
 			}
 		}
 	}
