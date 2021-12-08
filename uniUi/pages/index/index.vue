@@ -13,7 +13,7 @@
 			<wuc-tab :tab-list="tabList" :tabCur.sync="TabCur" tab-class="tab_list" select-class="select_tab" textFlex @change="tabChange"></wuc-tab>
 			<swiper class="tab_swiper" :current="TabCur" duration="300" @change="swiperChange">
 			  <swiper-item class="tab_swiper_item" v-for="(item,index) in tabList" :key="index">
-			    <view v-if="item.id == 1">
+			    <view v-if="item.id == 2">
 					<!-- 轮播图 -->
 					<view class="swiper_box">
 						<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" circular>
@@ -58,7 +58,7 @@
 					<!-- 左右滑动 -->
 					<scroll-view class="scroll_box_outer" scroll-x upper-threshold="100vw">
 						<view class="scroll_item_box">
-							<view v-for="(item,index) in 5" :key="item.id" class="scroll_item">
+							<view v-for="(item,index) in 5" :key="index" class="scroll_item" :style="{backgroundImage: 'url(' + img_url + ')'}">
 								{{item}}
 							</view>
 						</view>
@@ -68,7 +68,7 @@
 					<view class="like_box">
 						<view v-for="(item,index) in 6" class="like_box_item" :key="index">
 							<view class="cover_box">
-								<view class="img_box" style="background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf);">
+								<view class="img_box" :style="{backgroundImage: 'url(' + img_url + ')'}">
 									<view class="icon_box">
 										<view class="icon_item"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> 15.5万</view>
 										<view class="icon_item"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> 1...</view>
@@ -197,27 +197,48 @@
 							</view>
 						</view>
 					</view>
-					<view class="title_box">
-						<view class="title_text">耳机里的男朋友</view>
-						<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
-					</view>
-					<view class="like_box">
-						<view v-for="(item,index) in 3" class="like_box_item" :key="index">
-							<view class="cover_box">
-								<view class="img_box" style="background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf);">
-									<view class="icon_music">
-										<view class="icon_music_text">
-											<uni-icons custom-prefix="iconfont" color="#fff" type="headphones"  size="15"></uni-icons>
-											<text> 7</text>
+					
+					<view class="" v-for="(item,index) in recommendList" :key="index">
+						<view class="title_box">
+							<view class="title_text">{{item.title}}</view>
+							<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
+						</view>
+						<view class="like_box" v-if="item.type=='horizontal'">
+							<view v-for="(item,index) in 3" class="like_box_item" :key="index">
+								<view class="cover_box">
+									<view class="img_box" style="background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf);">
+										<view class="icon_music">
+											<view class="icon_music_text">
+												<uni-icons custom-prefix="iconfont" color="#fff" type="headphones"  size="15"></uni-icons>
+												<text> 7</text>
+											</view>
 										</view>
 									</view>
 								</view>
+								<view class="detail_text">
+									一些描述一些描述一些描述一些描述一些描述一些描述一些描述
+								</view>
 							</view>
-							<view class="detail_text">
-								一些描述一些描述一些描述一些描述一些描述一些描述一些描述
+						</view>
+						<view class="list_box" v-if="item.type=='vertical'">
+							<view class="list_item" v-for="(item,index) in 3" :key="index">
+								<view class="list_cover" :style="{backgroundImage: 'url('+img_url+')'}">
+									<view class="pay_text">付费</view>
+								</view>
+								<view class="list_detail">
+									<text class="item_title">杀破狼 第三季</text>
+									<view class="item_describe">
+										简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述
+									</view>
+									<view class="item_data">
+										<view class="">5044.3万播放量</view>
+										<view class="">已完结</view>
+									</view>
+								</view>
 							</view>
 						</view>
 					</view>
+					
 				</view>
 			  </swiper-item>
 			</swiper>
@@ -246,6 +267,64 @@
 		components: { WucTab },
 		data() {
 			return {
+				recommendList: [
+					{
+						title:"耳机里的男朋友",
+						type:"horizontal"
+					},
+					{
+						title:"偶遇爱情的一万种方式",
+						type:"vertical"
+					},
+					{
+						title:"你的非人类男友",
+						type:"horizontal"
+					},
+					{
+						title:"睡眠、解压与放松",
+						type:"horizontal"
+					},
+					{
+						title:"乙女心，独占你的爱",
+						type:"vertical"
+					},
+					{
+						title:"我与他的二次元恋情",
+						type:"vertical"
+					},
+					{
+						title:"这里有甜甜的糖糖",
+						type:"vertical"
+					},
+					{
+						title:"这本漫画你听了没",
+						type:"vertical"
+					},
+					{
+						title:"来我怀里做个美梦",
+						type:"horizontal"
+					},
+					{
+						title:"一切都是，与你的恋曲",
+						type:"horizontal"
+					},
+					{
+						title:"叮！广播剧曲目新鲜速递~",
+						type:"horizontal"
+					},
+					{
+						title:"铃铃铃，心动的讯号",
+						type:"horizontal"
+					},
+					{
+						title:"你不得不听的花絮+FT",
+						type:"horizontal"
+					},
+					{
+						title:"起床铃，让男神唤醒你的清晨！",
+						type:"horizontal"
+					}
+				],
 				workList: [
 					{
 						title:"付费精品"
@@ -353,13 +432,14 @@
 	.tab_box_outer{
 		padding-top: 10px;
 		// height: 100%;
-		height: 700vh;
+		height: 1180vh;
 		// padding-left: 15px;
 		// padding-right: 15px;
 		.tab_swiper{
 			height: 100%;
 			.tab_swiper_item{
 				width: 200vw;
+				height: 1180vh;
 				::-webkit-scrollbar { //隐藏滚动条
 				  width: 0;
 				  height: 0;
@@ -729,7 +809,7 @@
 						.scroll_item{
 							width: 100px;
 							height: 100px;
-							background: #F0AD4E;
+							// background: #F0AD4E;
 							border-radius: 10px;
 							margin-right: 8px;
 							flex-grow:0;
