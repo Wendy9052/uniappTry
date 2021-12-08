@@ -102,9 +102,15 @@
 						<view v-for="(item,index) in 2" class="boutique_item">
 							<view class="boutique_cover_box">
 								<view class="boutique_cover"  style="background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf);">
-									<view class="">
-										
+									<view class="tag_box">
+										今日更新
 									</view>
+								</view>
+								<view class="text_title">
+									某某-第二季
+								</view>
+								<view class="ouline_text">
+									猫耳FM、光合积木工作室联合出品
 								</view>
 							</view>
 						</view>
@@ -286,6 +292,18 @@
 							height: 0;
 							padding-top: 100%;
 							position: relative;
+							.text_title{
+								font-size: 15px;
+								color: #3A3A3A;
+							}
+							.ouline_text{
+								width: 100%;
+								font-size: 12px;
+								color: #606266;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+								overflow: hidden;
+							}
 							.boutique_cover{
 								position: absolute;
 								top: 0;
@@ -297,6 +315,35 @@
 								background-repeat: no-repeat;
 								background-position: center;
 								background-size: cover;
+								.tag_box{
+									position: relative;
+									display: inline;
+									height: 25px;			/** height 即为长方形的高h **/
+									width: 85px;
+									// padding: 0 20px 0 45px;
+							
+									display: flex;
+									// justify-content: center;
+									align-items: center;
+							
+									background-color: #ee1f21;
+									color: white;
+									font-size: 12px;
+									text-indent: 10px;
+									user-select: none;
+									margin-top: 15px;
+								}
+								.tag_box::before {			/** 首端正方形 **/
+									position: absolute;
+									right: -12px;			/** 平移距离为x/2 **/
+									width:20px;			/** 正方形边长 **/
+									height: 20px;			/** 正方形边长 **/
+							
+									transform: rotate(-45deg);	/** 旋转45° **/
+									content: "";
+									
+									background: rgba(255,255,255,1);
+								}
 							}
 						}
 					}
