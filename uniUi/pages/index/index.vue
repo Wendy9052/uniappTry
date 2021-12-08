@@ -66,7 +66,7 @@
 					<!-- 猜你喜欢 -->
 					<view class="title_text">猜你喜欢</view>
 					<view class="like_box">
-						<view v-for="(item,index) in 6" class="like_box_item">
+						<view v-for="(item,index) in 6" class="like_box_item" :key="index">
 							<view class="cover_box">
 								<view class="img_box" style="background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf);">
 									<view class="icon_box">
@@ -99,9 +99,9 @@
 					</view>
 					<!-- 精品周更 -->
 					<view class="boutique_box">
-						<view v-for="(item,index) in 2" class="boutique_item">
+						<view v-for="(item,index) in 2" class="boutique_item" :key="index">
 							<view class="boutique_cover_box">
-								<view class="boutique_cover"  style="background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf);">
+								<view class="boutique_cover"  :style="{backgroundImage: 'url(' + img_url + ')'}">
 									<view class="tag_box">
 										今日更新
 									</view>
@@ -115,6 +115,65 @@
 							</view>
 						</view>
 					</view>
+					<view class="title_box">
+						<view class="title_text">广播剧打赏榜周榜</view>
+						<view class="more_box">查看榜单<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
+					</view>
+					<!-- 左右滑动 -->
+					<scroll-view class="scroll_box_outer_list" scroll-x upper-threshold="100vw">
+						<view class="scroll_item_box_list">
+							<view class="" v-for="(item,index) in 5" :key="item.id">
+								<view class="scroll_item_list">
+									{{item}}
+								</view>
+								<view class="title_text">
+									小蘑菇 第二季
+								</view>
+							</view>
+						</view>
+					</scroll-view>
+					<view class="title_box">
+						<view class="title_text">正在直播</view>
+						<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
+					</view>
+					<view class="like_box_live">
+						<view v-for="(item,index) in 3" class="like_box_item_live" :key="index">
+							<view class="cover_box_live">
+								<view class="img_box_live" :style="{backgroundImage: 'url('+img_url+')'}">
+									<view class="icon_box_live">
+										<!-- <view class="icon_item_live"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> 15.5万</view> -->
+										<view class="icon_item_live">· LIVE</view>
+									</view>
+								</view>
+							</view>
+							<view class="detail_title">
+								天官赐福
+							</view>
+							<view class="detail_text_live">
+								<view class="detail_avatars" :style="{backgroundImage: 'url('+img_url+')'}">
+								</view>
+								<view class="detail_text">一些描述一些描述一些描述一些描述</view>
+							</view>
+						</view>
+					</view>
+					<view class="title_box">
+						<view class="title_text">人气月榜</view>
+						<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
+					</view>
+					<scroll-view class="scroll_box_outer_list" scroll-x upper-threshold="100vw">
+						<view class="scroll_item_box_list">
+							<view class="" v-for="(item,index) in 5" :key="item.id">
+								<view class="scroll_item_list img_bg" :style="{backgroundImage: 'url('+img_url+')'}">
+									<view class="pay_text">
+										付费
+									</view>
+								</view>
+								<view class="title_text">
+									小蘑菇
+								</view>
+							</view>
+						</view>
+					</scroll-view>
 				</view>
 			  </swiper-item>
 			</swiper>
@@ -132,43 +191,6 @@
 				</swiper>
 			</uni-swiper-dot>
 		</view> -->
-		<!-- 轮播图 -->
-		<!-- <view class="swiper_box">
-			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" circular>
-				<swiper-item>
-					<view class="swiper_item" style="background: #333333;">Addd</view>
-				</swiper-item>
-				<swiper-item>
-					<view class="swiper_item" style="background: #808080;">B</view>
-				</swiper-item>
-				<swiper-item>
-					<view class="swiper_item" style="background: #C8C7CC;">C</view>
-				</swiper-item>
-			</swiper>
-		</view> -->
-		<!-- 五个图标选项 -->
-		<!-- <view class="icon_box_outer">
-			<view class="icon_box">
-				<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
-				<text class="icon_text">文字</text>
-			</view>
-			<view class="icon_box">
-				<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
-				<text class="icon_text">文字</text>
-			</view>
-			<view class="icon_box">
-				<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
-				<text class="icon_text">文字</text>
-			</view>
-			<view class="icon_box">
-				<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
-				<text class="icon_text">文字</text>
-			</view>
-			<view class="icon_box">
-				<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
-				<text class="icon_text">文字</text>
-			</view>
-		</view> -->
 	</view>
 </template>
 
@@ -180,6 +202,7 @@
 		components: { WucTab },
 		data() {
 			return {
+				img_url:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf",
 				info: [{
 					content: '内容 A'
 				}, {
@@ -265,22 +288,68 @@
 	padding: 15px;
 	// height: 200vh;
 	height: auto;
+	
 	.tab_box_outer{
 		padding-top: 10px;
 		// height: 100%;
-		height: 200vh;
+		height: 300vh;
 		// padding-left: 15px;
 		// padding-right: 15px;
 		.tab_swiper{
 			height: 100%;
 			.tab_swiper_item{
 				width: 200vw;
+				::-webkit-scrollbar { //隐藏滚动条
+				  width: 0;
+				  height: 0;
+				  color: transparent;
+				}
+				.scroll_box_outer_list{
+					// background: pink;
+					height: 140px;
+					// padding: 25px 0; 
+					width: 100%;
+					
+					.scroll_item_box_list{
+						width: 100%;
+						display: flex;
+						.title_text{
+							font-size: 13px;
+							color: #3A3A3A;
+						}
+						.scroll_item_list{
+							width: 75px;
+							height: 100px;
+							background: #F0AD4E;
+							border-radius: 10px;
+							margin-right: 8px;
+							flex-grow:0;
+							flex-shrink:0;
+							.pay_text{
+								font-size: 12px;
+								color: #FFFFFF;
+								background: #fec109;
+								width: 30px;
+								height: 16px;
+								border-radius: 4px;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+							}
+						}
+						.img_bg{
+							background-repeat: no-repeat;
+							background-position: center;
+							background-size: cover;
+						}
+					}
+				}
 				.boutique_box{
 					width: 100%;
 					display:flex;
 					flex-wrap: wrap;
 					height: auto;
-					
+					margin-bottom: 50px;
 					.boutique_item{
 						width: calc(calc(100% / 2) - 10px);
 						margin:5px;
@@ -360,6 +429,83 @@
 					padding: 0 10px;
 					.btn_text{
 						font-size: 12px;
+					}
+				}
+				.like_box_live{
+					// background: pink;
+					width: 100%;
+					display:flex;
+					flex-wrap: wrap;
+					height: auto;
+					.like_box_item_live{
+						width: calc(calc(100% / 3) - 10px);
+						margin:5px;
+						// height:50px;
+						box-sizing: border-box;
+						border:1px  solid #DCDCDC;
+						border-radius: 10px;
+						.detail_title{
+							text-indent: 5px;
+						}
+						.detail_text_live{
+							font-size: 12px;
+							line-height: 18px;
+							color: #303133;
+							width: 100%;
+							display: flex;
+							.detail_avatars{
+								width: 18px;
+								height: 18px;
+								border-radius: 50%;
+								margin: 0 5px;
+								background-repeat: no-repeat;
+								background-position: center;
+								background-size: cover;
+								flex-grow: 0;
+								flex-shrink:0;
+							}
+							.detail_text{
+								overflow: hidden;
+								text-overflow: ellipsis; /* 文本溢出时显示省略号来代表被修剪的文本 */
+								display: -webkit-box; /* 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 */
+								-webkit-box-orient: vertical; /* 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 */
+								-webkit-line-clamp: 1; /* 文本需要显示多少行 */
+							}
+						}
+						.cover_box_live{
+							width: 100%;
+							height: 0;
+							padding-top: 100%;
+							position: relative;
+							.img_box_live{
+								position: absolute;
+								top: 0;
+								left: 0;
+								width: 100%;
+								height: 100%;
+								background-repeat: no-repeat;
+								background-position: center;
+								background-size: cover;
+								display: flex;
+								.icon_box_live{
+									display: flex;
+									justify-content: center;
+									align-items: center;
+									color: #fff;
+									font-size: 10px;
+									background: 120px;
+									height: 20px;
+									background: linear-gradient(#f76863, #fc8467 , #fd8d5c);
+									border-radius: 10px;
+									padding: 0 8px;
+									margin-top: 5px;
+									margin-left: 5px;
+									.icon_item_live{
+										display: flex;
+									}
+								}
+							}
+						}
 					}
 				}
 				.like_box{
