@@ -174,6 +174,50 @@
 							</view>
 						</view>
 					</scroll-view>
+					<view class="" v-for="(item,index) in workList" :key="index">
+						<view class="title_box">
+							<view class="title_text">{{item.title}}</view>
+							<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
+						</view>
+						<view class="list_box">
+							<view class="list_item" v-for="(item,index) in 3" :key="index">
+								<view class="list_cover" :style="{backgroundImage: 'url('+img_url+')'}">
+									<view class="pay_text">付费</view>
+								</view>
+								<view class="list_detail">
+									<text class="item_title">杀破狼 第三季</text>
+									<view class="item_describe">
+										简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述
+									</view>
+									<view class="item_data">
+										<view class="">5044.3万播放量</view>
+										<view class="">已完结</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="title_box">
+						<view class="title_text">耳机里的男朋友</view>
+						<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
+					</view>
+					<view class="like_box">
+						<view v-for="(item,index) in 3" class="like_box_item" :key="index">
+							<view class="cover_box">
+								<view class="img_box" style="background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf);">
+									<view class="icon_music">
+										<view class="icon_music_text">
+											<uni-icons custom-prefix="iconfont" color="#fff" type="headphones"  size="15"></uni-icons>
+											<text> 7</text>
+										</view>
+									</view>
+								</view>
+							</view>
+							<view class="detail_text">
+								一些描述一些描述一些描述一些描述一些描述一些描述一些描述
+							</view>
+						</view>
+					</view>
 				</view>
 			  </swiper-item>
 			</swiper>
@@ -202,6 +246,23 @@
 		components: { WucTab },
 		data() {
 			return {
+				workList: [
+					{
+						title:"付费精品"
+					},
+					{
+						title:"言情精选"
+					},
+					{
+						title:"新作速递"
+					},
+					{
+						title:"拯救言情书荒，入坑必听"
+					},
+					{
+						title:"爆款小说，错过别喊书荒"
+					}
+				],
 				img_url:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf",
 				info: [{
 					content: '内容 A'
@@ -292,7 +353,7 @@
 	.tab_box_outer{
 		padding-top: 10px;
 		// height: 100%;
-		height: 300vh;
+		height: 700vh;
 		// padding-left: 15px;
 		// padding-right: 15px;
 		.tab_swiper{
@@ -304,12 +365,68 @@
 				  height: 0;
 				  color: transparent;
 				}
+				.list_box{
+					.list_item{
+						display: flex;
+						padding-bottom: 10px;
+						margin-top: 10px;
+						border-bottom: 1px solid #C0C4CC;
+						// justify-content: space-between;
+						.list_detail{
+							margin-left: 15px;
+							
+							.item_data{
+								display: flex;
+								color: #808080;
+								justify-content: space-between;
+								font-size: 12px;
+								margin-top: 15px;
+							}
+							.item_describe{
+								font-size: 10px;
+								color:#808080;
+								overflow: hidden;
+								text-overflow: ellipsis; /* 文本溢出时显示省略号来代表被修剪的文本 */
+								display: -webkit-box; /* 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 */
+								-webkit-box-orient: vertical; /* 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 */
+								-webkit-line-clamp: 2; /* 文本需要显示多少行 */
+								
+							}
+							.item_title{
+								font-size: 13px;
+							}
+						}
+						.list_cover{
+							width: 80px;
+							height: 100px;
+							border-radius: 5px;
+							background-repeat: no-repeat;
+							background-position: center;
+							background-size: cover;
+							position: relative;
+							flex-grow: 0;
+							flex-shrink: 0;
+							.pay_text{
+								position: absolute;
+								right: 0;
+								font-size: 12px;
+								color: #FFFFFF;
+								background: #fec109;
+								width: 30px;
+								height: 16px;
+								border-radius: 4px;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+							}
+						}
+					}
+				}
 				.scroll_box_outer_list{
 					// background: pink;
-					height: 140px;
+					// height: 140px;
 					// padding: 25px 0; 
 					width: 100%;
-					
 					.scroll_item_box_list{
 						width: 100%;
 						display: flex;
@@ -325,7 +442,10 @@
 							margin-right: 8px;
 							flex-grow:0;
 							flex-shrink:0;
+							position: relative;
 							.pay_text{
+								position: absolute;
+								right: 0;
 								font-size: 12px;
 								color: #FFFFFF;
 								background: #fec109;
@@ -548,6 +668,23 @@
 								background-size: cover;
 								display: flex;
 								align-items: flex-end;
+								.icon_music{
+									width: 100%;
+									display: flex;
+									// background: pink;
+									justify-content: flex-end;
+									// text-align: right;
+									.icon_music_text{
+										display: flex;
+										align-items: center;
+										font-size: 12px;
+										color: #fff;
+										padding-right: 5px;
+										text{
+											margin-left: 3px;
+										}
+									}
+								}
 								.icon_box{
 									width: 100%;
 									display: flex;
