@@ -5,6 +5,8 @@ import App from './App'
 
 Vue.config.productionTip = false
 
+require('./mock/mock.js')// 注意文件路径名称
+
 App.mpType = 'app'
 
 const app = new Vue({

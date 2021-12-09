@@ -70,17 +70,17 @@
 					<!-- 猜你喜欢 -->
 					<view class="title_text">猜你喜欢</view>
 					<view class="like_box">
-						<view v-for="(item,index) in 6" class="like_box_item" :key="index">
+						<view v-for="(item,index) in likeList" class="like_box_item" :key="item.id">
 							<view class="cover_box">
-								<view class="img_box" :style="{backgroundImage: 'url(' + img_url + ')'}">
+								<view class="img_box" :style="{backgroundImage: 'url(' + item.img_url + ')'}">
 									<view class="icon_box">
-										<view class="icon_item"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> 15.5万</view>
-										<view class="icon_item"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> 1...</view>
+										<view class="icon_item"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> {{item.play_num}}</view>
+										<view class="icon_item"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> {{item.comment_num}}</view>
 									</view>
 								</view>
 							</view>
 							<view class="detail_text">
-								一些描述一些描述一些描述一些描述一些描述一些描述一些描述
+								{{item.describe_text}}
 							</view>
 						</view>
 					</view>
@@ -127,7 +127,7 @@
 					<scroll-view class="scroll_box_outer_list" scroll-x upper-threshold="100vw">
 						<view class="scroll_item_box_list">
 							<view class="" v-for="(item,index) in 5" :key="item.id">
-								<view class="scroll_item_list">
+								<view class="scroll_item_list" :style="{backgroundImage: 'url(' + img_url + ')'}">
 									{{item}}
 								</view>
 								<view class="title_text">
@@ -145,7 +145,6 @@
 							<view class="cover_box_live">
 								<view class="img_box_live" :style="{backgroundImage: 'url('+img_url+')'}">
 									<view class="icon_box_live">
-										<!-- <view class="icon_item_live"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> 15.5万</view> -->
 										<view class="icon_item_live">· LIVE</view>
 									</view>
 								</view>
@@ -264,6 +263,7 @@
 </template>
 
 <script>
+	import { recommendData } from '../../api/api.js'
 	import {uniBadge} from '@dcloudio/uni-ui'
 	// import uniBadge from '@dcloudio/uni-ui/lib/uni-badge/uni-badge.vue' //也可使用此方式引入组件
 	import WucTab from '@/components/wuc-tab/wuc-tab.vue';
@@ -271,6 +271,15 @@
 		components: { WucTab },
 		data() {
 			return {
+				likeList: [
+					// {
+					// 	id:1,
+					// 	img_url:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf",
+					// 	play_num:"15.5万",
+					// 	comment_num:"3000",
+					// 	describe_text:"一些描述一些描述一些描述一些描述一些描述一些描述一些描述"
+					// }
+				],
 				img_url_3:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1111%2F052GQ22314%2F1P52G22314-8-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641544188&t=7982849db358713895028bdc49745d70",
 				img_url_2:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-05-29%2F5ed0c8e507044.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641544023&t=2882d37d568b0a3a7076c0e011e6c583",
 				recommendList: [
@@ -384,10 +393,21 @@
 				duration: 500
 			}
 		},
+		created() {
+			this.init()
+		},
 		onLoad() {
 
 		},
 		methods: {
+			async init() {
+				await recommendData().then(res => {
+					console.log("推荐页的信息",res)
+					this.likeList = res.data.datalist.like_list
+				}).catch(err => {
+					console.log("err",err)
+				})
+			},
 			change(e) {
 				this.current = e.detail.current;
 			},
@@ -529,6 +549,9 @@
 							flex-grow:0;
 							flex-shrink:0;
 							position: relative;
+							background-repeat: no-repeat;
+							background-size: cover;
+							background-position: center;
 							.pay_text{
 								position: absolute;
 								right: 0;
