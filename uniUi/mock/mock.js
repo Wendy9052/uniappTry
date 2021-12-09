@@ -105,8 +105,9 @@ function recommendData() {
         img_url: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf",
         item_title: "杀破狼 第三季",
         item_describe: "简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述",
-        play_num: "5044.3万播放量",
-        state_text:"已完结"
+        play_num: Random.float(1,100,0,2),
+        if_over: Random.integer(0,1),
+        if_pay: Random.integer(0,1),
       }
       worksData.worksItem.push(item)
     }

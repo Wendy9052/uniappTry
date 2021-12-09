@@ -182,7 +182,7 @@
 						<view class="list_box">
 							<view class="list_item" v-for="(item_child) in item.worksItem" :key="item_child.item_id">
 								<view class="list_cover" :style="{backgroundImage: 'url('+item_child.img_url+')'}">
-									<view class="pay_text">付费</view>
+									<view :class="item_child.if_pay == 1 ? 'pay_text' : 'free_text'">{{item_child.if_pay == 1 ? "付费" : "免费"}}</view>
 								</view>
 								<view class="list_detail">
 									<text class="item_title">{{item_child.item_title}}</text>
@@ -190,8 +190,8 @@
 										{{item_child.item_describe}}
 									</view>
 									<view class="item_data">
-										<view class="">{{item_child.play_num}}</view>
-										<view class="">{{item_child.state_text}}</view>
+										<view class="">{{item_child.play_num}}万播放量</view>
+										<view class="">{{item_child.if_over == 1 ? "已完结" : "连载中"}}</view>
 									</view>
 								</view>
 							</view>
