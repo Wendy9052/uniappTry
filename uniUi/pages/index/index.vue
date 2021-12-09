@@ -164,8 +164,8 @@
 						<view class="scroll_item_box_list">
 							<view class="" v-for="(item) in monthList" :key="item.id">
 								<view class="scroll_item_list img_bg" :style="{backgroundImage: 'url('+item.img_url+')'}">
-									<view class="pay_text">
-										付费
+									<view :class="item.if_pay == 1 ?'pay_text':'free_text'">
+										{{item.if_pay == 1 ? "付费" : "免费"}}
 									</view>
 								</view>
 								<view class="title_text">
@@ -223,7 +223,7 @@
 						<view class="list_box" v-if="item.type=='vertical'">
 							<view class="list_item" v-for="(mix_item) in item.mixItem" :key="mix_item.item_id">
 								<view class="list_cover" :style="{backgroundImage: 'url('+mix_item.img_url+')'}">
-									<view class="pay_text">{{mix_item.if_pay == '1'?"付费":"免费"}}</view>
+									<view :class="mix_item.if_pay == '1'?'pay_text':'free_text'">{{mix_item.if_pay == '1'?"付费":"免费"}}</view>
 								</view>
 								<view class="list_detail">
 									<text class="item_title">{{mix_item.item_title}}</text>
@@ -443,9 +443,22 @@
 							.pay_text{
 								position: absolute;
 								right: 0;
-								font-size: 12px;
+								font-size: 10px;
 								color: #FFFFFF;
 								background: #fec109;
+								width: 30px;
+								height: 16px;
+								border-radius: 4px;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+							}
+							.free_text{
+								position: absolute;
+								right: 0;
+								font-size: 10px;
+								color: #FFFFFF;
+								background: #3680ff;
 								width: 30px;
 								height: 16px;
 								border-radius: 4px;
@@ -486,6 +499,19 @@
 								font-size: 12px;
 								color: #FFFFFF;
 								background: #fec109;
+								width: 30px;
+								height: 16px;
+								border-radius: 4px;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+							}
+							.free_text{
+								position: absolute;
+								right: 0;
+								font-size: 12px;
+								color: #FFFFFF;
+								background: #3680ff;
 								width: 30px;
 								height: 16px;
 								border-radius: 4px;

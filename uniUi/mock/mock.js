@@ -150,11 +150,12 @@ function recommendData() {
     }
     liveList.push(liveData)
   }
-  for(let i=0; i < 5; i++) {
+  for(let i=0; i < 10; i++) {
     let monthData = {
       id: Random.increment(),
       img_url: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf",
       text_title: "默读",
+      if_pay: Random.integer(0,1),
     }
     monthList.push(monthData)
   }
