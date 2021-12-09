@@ -8,8 +8,6 @@
 				    <uni-icons slot="searchIcon" class="search_icon" color="#999999" size="18" type="search" />
 				</uni-search-bar>
 
-				<!-- 基本用法 -->
-				<!-- <uni-search-bar @confirm="search" @input="input" class="search_ipt"></uni-search-bar> -->
 			</view>
 			<uni-icons color="#999999" type="calendar-filled" size="25"></uni-icons>
 		</view>
@@ -70,7 +68,7 @@
 					<!-- 猜你喜欢 -->
 					<view class="title_text">猜你喜欢</view>
 					<view class="like_box">
-						<view v-for="(item,index) in likeList" class="like_box_item" :key="item.id">
+						<view v-for="(item) in likeList" class="like_box_item" :key="item.id">
 							<view class="cover_box">
 								<view class="img_box" :style="{backgroundImage: 'url(' + item.img_url + ')'}">
 									<view class="icon_box">
@@ -103,18 +101,18 @@
 					</view>
 					<!-- 精品周更 -->
 					<view class="boutique_box">
-						<view v-for="(item,index) in 2" class="boutique_item" :key="index">
+						<view v-for="(item) in boutiqueList" class="boutique_item" :key="item.id">
 							<view class="boutique_cover_box">
-								<view class="boutique_cover"  :style="{backgroundImage: 'url(' + img_url + ')'}">
+								<view class="boutique_cover"  :style="{backgroundImage: 'url(' + item.img_url + ')'}">
 									<view class="tag_box">
-										今日更新
+										{{item.tag_text}}
 									</view>
 								</view>
 								<view class="text_title">
-									某某-第二季
+									{{item.text_title}}
 								</view>
 								<view class="ouline_text">
-									猫耳FM、光合积木工作室联合出品
+									{{item.ouline_text}}
 								</view>
 							</view>
 						</view>
@@ -126,12 +124,11 @@
 					<!-- 左右滑动 -->
 					<scroll-view class="scroll_box_outer_list" scroll-x upper-threshold="100vw">
 						<view class="scroll_item_box_list">
-							<view class="" v-for="(item,index) in 5" :key="item.id">
-								<view class="scroll_item_list" :style="{backgroundImage: 'url(' + img_url + ')'}">
-									{{item}}
+							<view class="" v-for="(item) in weekList" :key="item.id">
+								<view class="scroll_item_list" :style="{backgroundImage: 'url(' + item.img_url + ')'}">
 								</view>
 								<view class="title_text">
-									小蘑菇 第二季
+									{{item.text_title}}
 								</view>
 							</view>
 						</view>
@@ -141,21 +138,21 @@
 						<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
 					</view>
 					<view class="like_box_live">
-						<view v-for="(item,index) in 3" class="like_box_item_live" :key="index">
+						<view v-for="(item) in liveList" class="like_box_item_live" :key="item.id">
 							<view class="cover_box_live">
-								<view class="img_box_live" :style="{backgroundImage: 'url('+img_url+')'}">
+								<view class="img_box_live" :style="{backgroundImage: 'url('+item.img_url+')'}">
 									<view class="icon_box_live">
 										<view class="icon_item_live">· LIVE</view>
 									</view>
 								</view>
 							</view>
 							<view class="detail_title">
-								天官赐福
+								{{item.text_title}}
 							</view>
 							<view class="detail_text_live">
-								<view class="detail_avatars" :style="{backgroundImage: 'url('+img_url+')'}">
+								<view class="detail_avatars" :style="{backgroundImage: 'url('+item.avatars_url+')'}">
 								</view>
-								<view class="detail_text">一些描述一些描述一些描述一些描述</view>
+								<view class="detail_text">{{item.detail_text}}</view>
 							</view>
 						</view>
 					</view>
@@ -165,51 +162,51 @@
 					</view>
 					<scroll-view class="scroll_box_outer_list" scroll-x upper-threshold="100vw">
 						<view class="scroll_item_box_list">
-							<view class="" v-for="(item,index) in 5" :key="item.id">
-								<view class="scroll_item_list img_bg" :style="{backgroundImage: 'url('+img_url+')'}">
+							<view class="" v-for="(item) in monthList" :key="item.id">
+								<view class="scroll_item_list img_bg" :style="{backgroundImage: 'url('+item.img_url+')'}">
 									<view class="pay_text">
 										付费
 									</view>
 								</view>
 								<view class="title_text">
-									小蘑菇
+									{{item.text_title}}
 								</view>
 							</view>
 						</view>
 					</scroll-view>
-					<view class="" v-for="(item,index) in workList" :key="index">
+					<view class="" v-for="(item) in worksList" :key="item.id">
 						<view class="title_box">
 							<view class="title_text">{{item.title}}</view>
 							<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
 						</view>
 						<view class="list_box">
-							<view class="list_item" v-for="(item,index) in 3" :key="index">
-								<view class="list_cover" :style="{backgroundImage: 'url('+img_url+')'}">
+							<view class="list_item" v-for="(item_child) in item.worksItem" :key="item_child.item_id">
+								<view class="list_cover" :style="{backgroundImage: 'url('+item_child.img_url+')'}">
 									<view class="pay_text">付费</view>
 								</view>
 								<view class="list_detail">
-									<text class="item_title">杀破狼 第三季</text>
+									<text class="item_title">{{item_child.item_title}}</text>
 									<view class="item_describe">
-										简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述
+										{{item_child.item_describe}}
 									</view>
 									<view class="item_data">
-										<view class="">5044.3万播放量</view>
-										<view class="">已完结</view>
+										<view class="">{{item_child.play_num}}</view>
+										<view class="">{{item_child.state_text}}</view>
 									</view>
 								</view>
 							</view>
 						</view>
 					</view>
 					
-					<view class="" v-for="(item,index) in recommendList" :key="index">
+					<view class="" v-for="(item,index) in mixList" :key="index">
 						<view class="title_box">
 							<view class="title_text">{{item.title}}</view>
 							<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
 						</view>
 						<view class="like_box" v-if="item.type=='horizontal'">
-							<view v-for="(item,index) in 3" class="like_box_item" :key="index">
+							<view v-for="(mix_item) in item.mixItem" class="like_box_item" :key="mix_item.item_id">
 								<view class="cover_box">
-									<view class="img_box" style="background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf);">
+									<view class="img_box" :style="{backgroundImage: 'url('+mix_item.img_url+')'}">
 										<view class="icon_music">
 											<view class="icon_music_text">
 												<uni-icons custom-prefix="iconfont" color="#fff" type="headphones"  size="15"></uni-icons>
@@ -219,23 +216,23 @@
 									</view>
 								</view>
 								<view class="detail_text">
-									一些描述一些描述一些描述一些描述一些描述一些描述一些描述
+									{{mix_item.item_describe}}
 								</view>
 							</view>
 						</view>
 						<view class="list_box" v-if="item.type=='vertical'">
-							<view class="list_item" v-for="(item,index) in 3" :key="index">
-								<view class="list_cover" :style="{backgroundImage: 'url('+img_url+')'}">
-									<view class="pay_text">付费</view>
+							<view class="list_item" v-for="(mix_item) in item.mixItem" :key="mix_item.item_id">
+								<view class="list_cover" :style="{backgroundImage: 'url('+mix_item.img_url+')'}">
+									<view class="pay_text">{{mix_item.if_pay == '1'?"付费":"免费"}}</view>
 								</view>
 								<view class="list_detail">
-									<text class="item_title">杀破狼 第三季</text>
+									<text class="item_title">{{mix_item.item_title}}</text>
 									<view class="item_describe">
-										简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述简介一些描述
+										{{mix_item.item_describe}}
 									</view>
 									<view class="item_data">
-										<view class="">5044.3万播放量</view>
-										<view class="">已完结</view>
+										<view class="">{{mix_item.play_num}}万播放量</view>
+										<view class="">{{mix_item.if_over == 1 ? "已完结":"未完结"}}</view>
 									</view>
 								</view>
 							</view>
@@ -271,92 +268,16 @@
 		components: { WucTab },
 		data() {
 			return {
-				likeList: [
-					// {
-					// 	id:1,
-					// 	img_url:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf",
-					// 	play_num:"15.5万",
-					// 	comment_num:"3000",
-					// 	describe_text:"一些描述一些描述一些描述一些描述一些描述一些描述一些描述"
-					// }
-				],
+				mixList: [], //混合推荐
+				worksList: [], //作品列表
+				monthList: [], //人气月榜
+				liveList: [], //正在直播
+				weekList: [],	//广播剧打赏周榜数据
+				boutiqueList: [], //精品周更
+				likeList: [], //猜你喜欢
 				img_url_3:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1111%2F052GQ22314%2F1P52G22314-8-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641544188&t=7982849db358713895028bdc49745d70",
 				img_url_2:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-05-29%2F5ed0c8e507044.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641544023&t=2882d37d568b0a3a7076c0e011e6c583",
-				recommendList: [
-					{
-						title:"耳机里的男朋友",
-						type:"horizontal"
-					},
-					{
-						title:"偶遇爱情的一万种方式",
-						type:"vertical"
-					},
-					{
-						title:"你的非人类男友",
-						type:"horizontal"
-					},
-					{
-						title:"睡眠、解压与放松",
-						type:"horizontal"
-					},
-					{
-						title:"乙女心，独占你的爱",
-						type:"vertical"
-					},
-					{
-						title:"我与他的二次元恋情",
-						type:"vertical"
-					},
-					{
-						title:"这里有甜甜的糖糖",
-						type:"vertical"
-					},
-					{
-						title:"这本漫画你听了没",
-						type:"vertical"
-					},
-					{
-						title:"来我怀里做个美梦",
-						type:"horizontal"
-					},
-					{
-						title:"一切都是，与你的恋曲",
-						type:"horizontal"
-					},
-					{
-						title:"叮！广播剧曲目新鲜速递~",
-						type:"horizontal"
-					},
-					{
-						title:"铃铃铃，心动的讯号",
-						type:"horizontal"
-					},
-					{
-						title:"你不得不听的花絮+FT",
-						type:"horizontal"
-					},
-					{
-						title:"起床铃，让男神唤醒你的清晨！",
-						type:"horizontal"
-					}
-				],
-				workList: [
-					{
-						title:"付费精品"
-					},
-					{
-						title:"言情精选"
-					},
-					{
-						title:"新作速递"
-					},
-					{
-						title:"拯救言情书荒，入坑必听"
-					},
-					{
-						title:"爆款小说，错过别喊书荒"
-					}
-				],
+				
 				img_url:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf",
 				info: [{
 					content: '内容 A'
@@ -404,6 +325,13 @@
 				await recommendData().then(res => {
 					console.log("推荐页的信息",res)
 					this.likeList = res.data.datalist.like_list
+					this.boutiqueList = res.data.datalist.boutique_list
+					this.weekList = res.data.datalist.week_list
+					this.liveList = res.data.datalist.live_list
+					this.monthList = res.data.datalist.month_list
+					this.worksList = res.data.datalist.works_list
+					this.mixList = res.data.datalist.mix_list
+					console.log("workslist",this.worksList)
 				}).catch(err => {
 					console.log("err",err)
 				})
