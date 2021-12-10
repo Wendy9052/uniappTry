@@ -16,276 +16,21 @@
 			<swiper class="tab_swiper" :current="TabCur" duration="300" @change="swiperChange">
 			  <swiper-item class="tab_swiper_item" v-for="(item,index) in tabList" :key="index">
 			    <view v-if="item.id == 2">
-					<!-- 轮播图 -->
-					<view class="swiper_box">
-						<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" circular>
-							<swiper-item>
-								<view class="swiper_item" :style="{backgroundImage: 'url(' + img_url_2 + ')'}"></view>
-							</swiper-item>
-							<swiper-item>
-								<view class="swiper_item" :style="{backgroundImage: 'url(' + img_url_3 + ')'}"></view>
-							</swiper-item>
-							<swiper-item>
-								<view class="swiper_item" :style="{backgroundImage: 'url(' + img_url_2 + ')'}"></view>
-							</swiper-item>
-						</swiper>
-					</view>
-					<!-- 五个图标选项 -->
-					<view class="icon_box_outer">
-						<view class="icon_box">
-							<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
-							<text class="icon_text">文字</text>
-						</view>
-						<view class="icon_box">
-							<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
-							<text class="icon_text">文字</text>
-						</view>
-						<view class="icon_box">
-							<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
-							<text class="icon_text">文字</text>
-						</view>
-						<view class="icon_box">
-							<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
-							<text class="icon_text">文字</text>
-						</view>
-						<view class="icon_box">
-							<uni-icons color="#999999" type="calendar-filled" size="45"></uni-icons>
-							<text class="icon_text">文字</text>
-						</view>
-					</view>
-					<!-- 运势语音 -->
-					<view class="banner_box" :style="{backgroundImage: 'url(' + img_url_2 + ')'}">
-						
-					</view>
-					<!-- 左右滑动 -->
-					<scroll-view class="scroll_box_outer" scroll-x upper-threshold="100vw">
-						<view class="scroll_item_box">
-							<view v-for="(item,index) in 5" :key="index" class="scroll_item" :style="{backgroundImage: 'url(' + img_url + ')'}">
-								{{item}}
-							</view>
-						</view>
-					</scroll-view>
-					<!-- 猜你喜欢 -->
-					<view class="title_text">猜你喜欢</view>
-					<view class="like_box">
-						<view v-for="(item) in likeList" class="like_box_item" :key="item.id">
-							<view class="cover_box">
-								<view class="img_box" :style="{backgroundImage: 'url(' + item.img_url + ')'}">
-									<view class="icon_box">
-										<view class="icon_item"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> {{item.play_num}}</view>
-										<view class="icon_item"><uni-icons custom-prefix="iconfont" color="#fff" type="videocam"  size="18"></uni-icons> {{item.comment_num}}</view>
-									</view>
-								</view>
-							</view>
-							<view class="detail_text">
-								{{item.describe_text}}
-							</view>
-						</view>
-					</view>
-					<!-- 换一批 -->
-					<view class="change_btn">
-						<view class="btn_text">
-							换一批
-						</view>
-						<view class="btn_icon">
-							<uni-icons custom-prefix="iconfont" type="refreshempty" size="18"></uni-icons>
-						</view>
-					</view>
-					<!-- banner -->
-					<view class="banner_box" :style="{backgroundImage: 'url(' + img_url_2 + ')'}">
-						
-					</view>
-					<view class="title_box">
-						<view class="title_text">精品周更</view>
-						<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
-					</view>
-					<!-- 精品周更 -->
-					<view class="boutique_box">
-						<view v-for="(item) in boutiqueList" class="boutique_item" :key="item.id">
-							<view class="boutique_cover_box">
-								<view class="boutique_cover"  :style="{backgroundImage: 'url(' + item.img_url + ')'}">
-									<view class="tag_box">
-										{{item.tag_text}}
-									</view>
-								</view>
-								<view class="text_title">
-									{{item.text_title}}
-								</view>
-								<view class="ouline_text">
-									{{item.ouline_text}}
-								</view>
-							</view>
-						</view>
-					</view>
-					<view class="title_box">
-						<view class="title_text">广播剧打赏榜周榜</view>
-						<view class="more_box">查看榜单<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
-					</view>
-					<!-- 左右滑动 -->
-					<scroll-view class="scroll_box_outer_list" scroll-x upper-threshold="100vw">
-						<view class="scroll_item_box_list">
-							<view class="" v-for="(item) in weekList" :key="item.id">
-								<view class="scroll_item_list" :style="{backgroundImage: 'url(' + item.img_url + ')'}">
-								</view>
-								<view class="title_text">
-									{{item.text_title}}
-								</view>
-							</view>
-						</view>
-					</scroll-view>
-					<view class="title_box">
-						<view class="title_text">正在直播</view>
-						<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
-					</view>
-					<view class="like_box_live">
-						<view v-for="(item) in liveList" class="like_box_item_live" :key="item.id">
-							<view class="cover_box_live">
-								<view class="img_box_live" :style="{backgroundImage: 'url('+item.img_url+')'}">
-									<view class="icon_box_live">
-										<view class="icon_item_live">· LIVE</view>
-									</view>
-								</view>
-							</view>
-							<view class="detail_title">
-								{{item.text_title}}
-							</view>
-							<view class="detail_text_live">
-								<view class="detail_avatars" :style="{backgroundImage: 'url('+item.avatars_url+')'}">
-								</view>
-								<view class="detail_text">{{item.detail_text}}</view>
-							</view>
-						</view>
-					</view>
-					<view class="title_box">
-						<view class="title_text">人气月榜</view>
-						<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
-					</view>
-					<scroll-view class="scroll_box_outer_list" scroll-x upper-threshold="100vw">
-						<view class="scroll_item_box_list">
-							<view class="" v-for="(item) in monthList" :key="item.id">
-								<view class="scroll_item_list img_bg" :style="{backgroundImage: 'url('+item.img_url+')'}">
-									<view :class="item.if_pay == 1 ?'pay_text':'free_text'">
-										{{item.if_pay == 1 ? "付费" : "免费"}}
-									</view>
-								</view>
-								<view class="title_text">
-									{{item.text_title}}
-								</view>
-							</view>
-						</view>
-					</scroll-view>
-					<view class="" v-for="(item) in worksList" :key="item.id">
-						<view class="title_box">
-							<view class="title_text">{{item.title}}</view>
-							<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
-						</view>
-						<view class="list_box">
-							<view class="list_item" v-for="(item_child) in item.worksItem" :key="item_child.item_id">
-								<view class="list_cover" :style="{backgroundImage: 'url('+item_child.img_url+')'}">
-									<view :class="item_child.if_pay == 1 ? 'pay_text' : 'free_text'">{{item_child.if_pay == 1 ? "付费" : "免费"}}</view>
-								</view>
-								<view class="list_detail">
-									<text class="item_title">{{item_child.item_title}}</text>
-									<view class="item_describe">
-										{{item_child.item_describe}}
-									</view>
-									<view class="item_data">
-										<view class="">{{item_child.play_num}}万播放量</view>
-										<view class="">{{item_child.if_over == 1 ? "已完结" : "连载中"}}</view>
-									</view>
-								</view>
-							</view>
-						</view>
-					</view>
-					
-					<view class="" v-for="(item,index) in mixList" :key="index">
-						<view class="title_box">
-							<view class="title_text">{{item.title}}</view>
-							<view class="more_box">更多<uni-icons custom-prefix="iconfont" color="#909399" type="right" size="12"></uni-icons></view>
-						</view>
-						<view class="like_box" v-if="item.type=='horizontal'">
-							<view v-for="(mix_item) in item.mixItem" class="like_box_item" :key="mix_item.item_id">
-								<view class="cover_box">
-									<view class="img_box" :style="{backgroundImage: 'url('+mix_item.img_url+')'}">
-										<view class="icon_music">
-											<view class="icon_music_text">
-												<uni-icons custom-prefix="iconfont" color="#fff" type="headphones"  size="15"></uni-icons>
-												<text> 7</text>
-											</view>
-										</view>
-									</view>
-								</view>
-								<view class="detail_text">
-									{{mix_item.item_describe}}
-								</view>
-							</view>
-						</view>
-						<view class="list_box" v-if="item.type=='vertical'">
-							<view class="list_item" v-for="(mix_item) in item.mixItem" :key="mix_item.item_id">
-								<view class="list_cover" :style="{backgroundImage: 'url('+mix_item.img_url+')'}">
-									<view :class="mix_item.if_pay == '1'?'pay_text':'free_text'">{{mix_item.if_pay == '1'?"付费":"免费"}}</view>
-								</view>
-								<view class="list_detail">
-									<text class="item_title">{{mix_item.item_title}}</text>
-									<view class="item_describe">
-										{{mix_item.item_describe}}
-									</view>
-									<view class="item_data">
-										<view class="">{{mix_item.play_num}}万播放量</view>
-										<view class="">{{mix_item.if_over == 1 ? "已完结":"未完结"}}</view>
-									</view>
-								</view>
-							</view>
-						</view>
-					</view>
-					
+						<recommend></recommend>
 				</view>
 			  </swiper-item>
 			</swiper>
 		</view>
-		<!-- <uni-badge text="1"></uni-badge> -->
-		<!-- uni-ui的轮播图 -->
-		<!-- <view class="swiper_outer">
-			<uni-swiper-dot :info="info" :current="current" field="content" :mode="mode">
-				<swiper class="swiper-box" @change="change">
-					<swiper-item v-for="(item ,index) in info" :key="index">
-						<view class="swiper-item">
-							{{item.content}}
-						</view>
-					</swiper-item>
-				</swiper>
-			</uni-swiper-dot>
-		</view> -->
 	</view>
 </template>
 
 <script>
-	import { recommendData } from '../../api/api.js'
-	import {uniBadge} from '@dcloudio/uni-ui'
-	// import uniBadge from '@dcloudio/uni-ui/lib/uni-badge/uni-badge.vue' //也可使用此方式引入组件
+	import recommend from './components/recommend.vue'
 	import WucTab from '@/components/wuc-tab/wuc-tab.vue';
 	export default {
-		components: { WucTab },
+		components: { WucTab,recommend},
 		data() {
 			return {
-				mixList: [], //混合推荐
-				worksList: [], //作品列表
-				monthList: [], //人气月榜
-				liveList: [], //正在直播
-				weekList: [],	//广播剧打赏周榜数据
-				boutiqueList: [], //精品周更
-				likeList: [], //猜你喜欢
-				img_url_3:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1111%2F052GQ22314%2F1P52G22314-8-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641544188&t=7982849db358713895028bdc49745d70",
-				img_url_2:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-05-29%2F5ed0c8e507044.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641544023&t=2882d37d568b0a3a7076c0e011e6c583",
-				
-				img_url:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc7%2Fe9%2F8a%2Fc7e98a2c84a2c508d868299a369843b5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641451177&t=0cffd46efceb3053dbf7b0cb9e2eb8bf",
-				info: [{
-					content: '内容 A'
-				}, {
-					content: '内容 B'
-				}, {
-					content: '内容 C'
-				}],
 				current: 0,
 				mode: 'dot',
 				TabCur: 0,
@@ -298,8 +43,6 @@
 				],
 				active: 1,
 				value: "", //搜索框中的值
-				
-				
 				date:"",
 				"buttonText":"按钮",
 				"buttondisble":false,
@@ -322,19 +65,6 @@
 		},
 		methods: {
 			async init() {
-				await recommendData().then(res => {
-					console.log("推荐页的信息",res)
-					this.likeList = res.data.datalist.like_list
-					this.boutiqueList = res.data.datalist.boutique_list
-					this.weekList = res.data.datalist.week_list
-					this.liveList = res.data.datalist.live_list
-					this.monthList = res.data.datalist.month_list
-					this.worksList = res.data.datalist.works_list
-					this.mixList = res.data.datalist.mix_list
-					console.log("workslist",this.worksList)
-				}).catch(err => {
-					console.log("err",err)
-				})
 			},
 			change(e) {
 				this.current = e.detail.current;
@@ -906,22 +636,6 @@
 			text-align: center;
 			background: rgba(0,0,0,.2);
 			margin-bottom: 5px;
-		}
-	}
-	.date_box{
-		display: flex;
-		justify-content: space-between;
-		padding: 10px;
-		box-shadow: 0 0 5px rgba(204,204,204,0.6);
-		margin-bottom: 15px;
-		margin-top: 15px;
-		.date_label{
-			font-size: 14px;
-			color: #a5a5a5;
-		}
-		.date_text{
-			font-size: 16px;
-			color: #5a5a5a;
 		}
 	}
 }
