@@ -15,9 +15,21 @@
 			<wuc-tab :tab-list="tabList" :tabCur.sync="TabCur" tab-class="tab_list" select-class="select_tab" textFlex @change="tabChange"></wuc-tab>
 			<swiper class="tab_swiper" :current="TabCur" duration="300" @change="swiperChange">
 			  <swiper-item class="tab_swiper_item" v-for="(item,index) in tabList" :key="index">
-			    <view v-if="item.id == 2">
+			    <view v-if="item.id == 1">
 						<recommend></recommend>
-				</view>
+					</view>
+					<view v-if="item.id == 2">
+						<recommend></recommend>
+					</view>
+					<view v-if="item.id == 3">
+						<recommend></recommend>
+					</view>
+					<view v-if="item.id == 4">
+						<recommend></recommend>
+					</view>
+					<view v-if="item.id == 5">
+						<classify></classify>
+					</view>
 			  </swiper-item>
 			</swiper>
 		</view>
@@ -25,10 +37,11 @@
 </template>
 
 <script>
+	import classify from './components/classify.vue'
 	import recommend from './components/recommend.vue'
 	import WucTab from '@/components/wuc-tab/wuc-tab.vue';
 	export default {
-		components: { WucTab,recommend},
+		components: { WucTab,recommend,classify},
 		data() {
 			return {
 				current: 0,
