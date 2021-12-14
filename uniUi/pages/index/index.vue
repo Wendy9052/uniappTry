@@ -4,7 +4,7 @@
 			<uni-icons color="#999999" type="calendar-filled" size="25"></uni-icons>
 			<view class="searchBox">
 				<!-- 替换组件的搜索图标 -->
-				<uni-search-bar placeholder="" @confirm="search" @cancel="cancel" class="search_ipt" cancel-text="cancel">
+				<uni-search-bar placeholder="" @confirm="search" @cancel="cancel" :cancelButton="auto" class="search_ipt">
 				    <uni-icons slot="searchIcon" class="search_icon" color="#999999" size="18" type="search" />
 				</uni-search-bar>
 
